@@ -58,7 +58,7 @@ RUN hg update stable
 # Configure universe_wsgi.ini file
 COPY configure_universe_wsgi.sh /home/galaxy/galaxy-dist/configure_universe_wsgi.sh
 COPY wait_galaxy_conf_finished.py /home/galaxy/galaxy-dist/wait_galaxy_conf_finished.py
-RUN cp universe_wsgi.ini.sample universe_wsgi.ini && sh configure_universe_wsgi.sh universe_wsgi.ini
+RUN cp config/galaxy.ini.sample config/galaxy.ini && sh configure_universe_wsgi.sh config/galaxy.ini
 RUN service postgresql start && sh run.sh --daemon && python wait_galaxy_conf_finished.py paster.log
 
 ##################
